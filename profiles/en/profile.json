@@ -1,0 +1,45 @@
+{
+    "dialogue": {
+        "system": "rhasspy"
+    },
+    "intent": {
+        "system": "fsticuffs"
+    },
+    "microphone": {
+        "system": "pyaudio"
+    },
+    "sounds": {
+        "aplay": {
+            "device": "default:CARD=seeed2micvoicec"
+        },
+        "system": "aplay"
+    },
+    "speech_to_text": {
+        "system": "deepspeech"
+    },
+    "text_to_speech": {
+        "larynx": {
+            "default_voice": "southern_english_female",
+            "vocoder": "vctk_medium"
+        },
+        "system": "larynx"
+    },
+    "wake": {
+        "raven": {
+            "average_templates": false,
+            "keywords": {
+                "Friday_1": {
+                    "enabled": true
+                },
+                "Friday_2": {
+                    "enabled": true
+                },
+                "Friday_3": {
+                    "enabled": true
+                }
+            },
+            "probability_threshold": "0.7"
+        },
+        "system": "raven"
+    }
+}

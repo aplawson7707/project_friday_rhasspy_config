@@ -1,0 +1,5 @@
+/profiles/en/supervisord.log
+/profiles/en/deepspeech/
+/profiles/en/raven/
+/profiles/en/tts/larynx/
+*.pickle.gz
