@@ -1,6 +1,6 @@
 services:
   dialogue:
-    command: --debug --host mqtt --port 12183 --site-id default --session-timeout
+    command: --debug --host mqtt --port 12183 --site-id FridayRPi4 --session-timeout
       30 --sound wake /usr/lib/rhasspy/etc/wav/beep_hi.wav --sound recorded /usr/lib/rhasspy/etc/wav/beep_lo.wav
       --sound error /usr/lib/rhasspy/etc/wav/beep_error.wav --volume 1 --min-asr-confidence
       0 --say-chars-per-second 33 --sound-suffix .wav --sound-suffix .mp3 --sound-suffix
@@ -11,8 +11,8 @@ services:
     tty: true
   intent_recognition:
     command: --intent-graph /profiles/en/intent_graph.pickle.gz --debug --host mqtt
-      --port 12183 --site-id default --replace-numbers --language en_US --casing lower
-      --converters-dir /profiles/en/converters --failure-token <unk>
+      --port 12183 --site-id FridayRPi4 --replace-numbers --language en_US --casing
+      lower --converters-dir /profiles/en/converters --failure-token <unk>
     depends_on:
     - mqtt
     image: rhasspy/rhasspy-nlu-hermes
@@ -21,7 +21,7 @@ services:
     - /profiles:/profiles
   microphone:
     command: --sample-rate 16000 --sample-width 2 --channels 1 --debug --host mqtt
-      --port 12183 --site-id default --udp-audio-host 127.0.0.1 --frames-per-buffer
+      --port 12183 --site-id FridayRPi4 --udp-audio-host 127.0.0.1 --frames-per-buffer
       1024
     depends_on:
     - mqtt
@@ -38,7 +38,7 @@ services:
     tty: true
   speakers:
     command: --play-command 'aplay -q -t wav -D default:CARD=seeed2micvoicec' --list-command
-      'aplay -L' --volume 1 --debug --host mqtt --port 12183 --site-id default
+      'aplay -L' --volume 1 --debug --host mqtt --port 12183 --site-id FridayRPi4
     depends_on:
     - mqtt
     devices:
@@ -49,7 +49,7 @@ services:
     command: --model /profiles/en/deepspeech/model/0.9/output_graph.pbmm --language-model
       /profiles/en/deepspeech/lm.binary --scorer /profiles/en/deepspeech/scorer --alphabet
       /profiles/en/deepspeech/model/0.9/alphabet.txt --debug --host mqtt --port 12183
-      --site-id default --base-language-model-fst /profiles/en/deepspeech/base_language_model.fst
+      --site-id FridayRPi4 --base-language-model-fst /profiles/en/deepspeech/base_language_model.fst
       --base-language-model-weight 0 --mixed-language-model-fst /profiles/en/deepspeech/mixed.fst
       --voice-skip-seconds 0 --voice-min-seconds 1 --voice-max-seconds 20 --voice-speech-seconds
       0.3 --voice-silence-seconds 0.5 --voice-before-seconds 0.5 --voice-sensitivity
@@ -117,7 +117,7 @@ services:
       denoiser_strength 0.001 --voice southern_english_male en-us glow_tts /profiles/en/tts/larynx/en-us/southern_english_male-glow_tts
       hifi_gan /profiles/en/tts/larynx/hifi_gan/vctk_medium --vocoder-setting southern_english_male
       denoiser_strength 0.001 --volume 1 --debug --host mqtt --port 12183 --site-id
-      default
+      FridayRPi4
     depends_on:
     - mqtt
     image: rhasspy/rhasspy-tts-larynx-hermes
@@ -126,7 +126,7 @@ services:
     command: --keyword /profiles/en/raven/Friday_1 enabled=True --keyword /profiles/en/raven/Friday_2
       enabled=True --keyword /profiles/en/raven/Friday_3 enabled=True --probability-threshold
       0.7 --minimum-matches 1 --vad-sensitivity 1 --debug --host mqtt --port 12183
-      --site-id default
+      --site-id FridayRPi4
     depends_on:
     - mqtt
     image: rhasspy/rhasspy-wake-raven-hermes
