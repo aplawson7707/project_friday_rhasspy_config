@@ -3,3 +3,4 @@
 /profiles/en/raven/
 /profiles/en/tts/larynx/
 *.pickle.gz
+/profiles/en/wav

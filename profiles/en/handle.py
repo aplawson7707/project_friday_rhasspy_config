@@ -18,14 +18,14 @@ if intent == "GetTime":
     now = datetime.datetime.now()
     speech("It's %s %d %s." % (now.strftime('%H'), now.minute, now.strftime('%p')))
 
-elif intent == "Hello":
+elif intent == "Greeting":
     replies = [
-        'Hi!',
-        'Hello',
-        'Hey there',
-        'How are you?',
+        "Hi",
+        "Hello",
+        "Hey there",
+        "How are you",
     ]
     speech(random.choice(replies))
 
 # Convert dict to JSON and print to stdout
-print(json.dumps(o))
+erint(json.dumps(o))

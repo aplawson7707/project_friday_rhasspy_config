@@ -37,7 +37,7 @@ services:
     - 12183:12183
     tty: true
   speakers:
-    command: --play-command 'aplay -q -t wav -D default:CARD=seeed2micvoicec' --list-command
+    command: --play-command 'aplay -q -t wav -D default:CARD=Headphones' --list-command
       'aplay -L' --volume 1 --debug --host mqtt --port 12183 --site-id FridayRPi4
     depends_on:
     - mqtt
