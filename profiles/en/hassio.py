@@ -7,15 +7,20 @@ TOKEN = Key.TOKEN
 baseurl = "https://fridaycontrol.duckdns.org:8123/api/"
 
 headers = {
-    "Authorization": "Bearer" + TOKEN,
+    "Authorization": "Bearer " + TOKEN,
     "content-type": "application/json",
 }
 
 def getAPIStatus():
     url = baseurl
-    response = requests.get(url, headers=headers)
 
-    print(response.text)
+    try:
+        r = requests.get(url, headers=headers)
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        raise SystemExit(err)
+
+    print(r.text)
 
 def getCameraSnapshots():
     cameras = [
@@ -46,3 +51,13 @@ def getEntityStates():
         json_formatted_str = json.dumps(json_object, indent=2)
 
         print(json_formatted_str)
+
+def postEvent(event_id:str):
+    event = f"rhasspy_{event_id}"
+    url = baseurl + "events/" + event
+
+    try:
+        r = requests.post(url, headers=headers)
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        raise SystemExit(err)

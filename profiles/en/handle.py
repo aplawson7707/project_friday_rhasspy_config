@@ -4,6 +4,7 @@ import sys
 import json
 import random
 import datetime
+from hassio import *
 
 def speech(text):
     global o
@@ -17,13 +18,12 @@ intent = o["intent"]["name"]
 greetings = [
     "Hi",
     "Hello",
-    "Hey there",
+    "Hello there",
 ]
 
 morning_greetings = [
     "Good morning sir",
     "Good morning to you as well",
-    "How are you today sir?",
     "Good to see you sir",
 ]
 
@@ -42,6 +42,10 @@ elif intent == "KnockKnock":
 
 elif intent == "GoodMorning":
     speech(random.choice(morning_greetings))
+
+elif intent == "GoodNight":
+    speech("Ive received the Good Night Intent")
+    postEvent("GoodNight")
 
 # Convert dict to JSON and print to stdout
 print(json.dumps(o))
