@@ -47,5 +47,11 @@ elif intent == "GoodNight":
     speech("Ive received the Good Night Intent")
     postEvent("GoodNight")
 
+elif intent == "DorfusTVPlay":
+    postEvent("DorfusTVPlay")
+
+elif intent == "DorfusTVPause":
+    postEvent("DorfusTVPause")
+
 # Convert dict to JSON and print to stdout
 print(json.dumps(o))
