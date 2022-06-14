@@ -5,3 +5,4 @@
 *.pickle.gz
 /profiles/en/wav
 /profiles/en/constants.py
+.env
