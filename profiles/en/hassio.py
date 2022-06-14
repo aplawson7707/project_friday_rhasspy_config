@@ -1,10 +1,12 @@
+import os
+from dotenv import load_dotenv
 import requests
-import constants as Key
 import json
 
-TOKEN = Key.TOKEN
+load_dotenv()
 
-baseurl = "https://fridaycontrol.duckdns.org:8123/api/"
+TOKEN = os.getenv('HASS_TOKEN')
+baseurl = os.getenv('HASS_URL')
 
 headers = {
     "Authorization": "Bearer " + TOKEN,
